@@ -21,6 +21,9 @@ const (
 	FormatAlnum                FormatType = "alnum"
 	FormatAlphaUnicode         FormatType = "alpha_unicode"
 	FormatAlnumUnicode         FormatType = "alnum_unicode"
+	FormatSlug                 FormatType = "slug"
+	FormatStrictHtml           FormatType = "strict_html"
+	FormatUsername             FormatType = "username"
 	FormatNumeric              FormatType = "numeric"
 	FormatNumber               FormatType = "number"
 	FormatHexadecimal          FormatType = "hexadecimal"
@@ -76,6 +79,9 @@ func getFormatTypeMap() map[FormatType]formatFunc {
 		FormatAlnum:                formatAlnum,
 		FormatAlphaUnicode:         formatAlphaUnicode,
 		FormatAlnumUnicode:         formatAlnumUnicode,
+		FormatSlug:                 formatSlug,
+		FormatUsername:             formatUsername,
+		FormatStrictHtml:           formatStrictHtml,
 		FormatNumeric:              formatNumeric,
 		FormatNumber:               formatNumber,
 		FormatHexadecimal:          formatHexadecimal,
@@ -593,4 +599,19 @@ func formatDir(value string) bool {
 // formatPostcode is the validation function for validating if the current field's value is a valid postcode.
 func formatPostcode(value string) bool {
 	return postcodeRegex.MatchString(value)
+}
+
+// formatSlug is the validation function for validating if the current field's value is a alphanum plus _ and -.
+func formatSlug(value string) bool {
+	return slugRegex.MatchString(value)
+}
+
+// formatUsername is the validation function for validating if the current field's value is a suit username.
+func formatUsername(value string) bool {
+	return usernameRegex.MatchString(value)
+}
+
+// formatSlug is the validation function for validating if the current field's value does not contain html.
+func formatStrictHtml(value string) bool {
+	return !strictHtmlRegex.MatchString(value)
 }

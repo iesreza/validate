@@ -3,10 +3,15 @@ package validate
 import "regexp"
 
 const (
-	alphaRegexString                 = "^[a-zA-Z]+$"
-	alnumRegexString                 = "^[a-zA-Z0-9]+$"
-	alphaUnicodeRegexString          = "^[\\p{L}]+$"
-	alnumUnicodeRegexString          = "^[\\p{L}\\p{N}]+$"
+	alphaRegexString        = "^[a-zA-Z]+$"
+	alnumRegexString        = "^[a-zA-Z0-9]+$"
+	alphaUnicodeRegexString = "^[\\p{L}]+$"
+	alnumUnicodeRegexString = "^[\\p{L}\\p{N}]+$"
+
+	slugRegexString       = "^[a-zA-Z\\-\\_]+$"
+	usernameRegexString   = "/^[a-z0-9_-]{3,32}$/"
+	strictHtmlRegexString = "\\<\\/*[a-z]+.*\\/*\\>"
+
 	numericRegexString               = "^[0-9]+$"
 	numberRegexString                = "^[-+]?[0-9]+(?:\\.[0-9]+)?$"
 	hexadecimalRegexString           = "^[0-9a-fA-F]+$"
@@ -43,10 +48,15 @@ const (
 )
 
 var (
-	alphaRegex                 = regexp.MustCompile(alphaRegexString)
-	alnumRegex                 = regexp.MustCompile(alnumRegexString)
-	alphaUnicodeRegex          = regexp.MustCompile(alphaUnicodeRegexString)
-	alnumUnicodeRegex          = regexp.MustCompile(alnumUnicodeRegexString)
+	alphaRegex        = regexp.MustCompile(alphaRegexString)
+	alnumRegex        = regexp.MustCompile(alnumRegexString)
+	alphaUnicodeRegex = regexp.MustCompile(alphaUnicodeRegexString)
+	alnumUnicodeRegex = regexp.MustCompile(alnumUnicodeRegexString)
+
+	slugRegex       = regexp.MustCompile(slugRegexString)
+	usernameRegex   = regexp.MustCompile(usernameRegexString)
+	strictHtmlRegex = regexp.MustCompile(strictHtmlRegexString)
+
 	numericRegex               = regexp.MustCompile(numericRegexString)
 	numberRegex                = regexp.MustCompile(numberRegexString)
 	hexadecimalRegex           = regexp.MustCompile(hexadecimalRegexString)
