@@ -8,7 +8,7 @@ const (
 	alphaUnicodeRegexString = "^[\\p{L}]+$"
 	alnumUnicodeRegexString = "^[\\p{L}\\p{N}]+$"
 
-	slugRegexString       = "^[a-zA-Z\\-\\_]+$"
+	slugRegexString       = "^[0-9a-zA-Z\\-\\_]+$"
 	usernameRegexString   = "/^[a-z0-9_-]{3,32}$/"
 	strictHtmlRegexString = "\\<\\/*[a-z]+.*\\/*\\>"
 
