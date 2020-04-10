@@ -22,6 +22,7 @@ const (
 	FormatAlphaUnicode         FormatType = "alpha_unicode"
 	FormatAlnumUnicode         FormatType = "alnum_unicode"
 	FormatSlug                 FormatType = "slug"
+	FormatText                 FormatType = "text"
 	FormatStrictHtml           FormatType = "strict_html"
 	FormatUsername             FormatType = "username"
 	FormatNumeric              FormatType = "numeric"
@@ -80,6 +81,7 @@ func getFormatTypeMap() map[FormatType]formatFunc {
 		FormatAlphaUnicode:         formatAlphaUnicode,
 		FormatAlnumUnicode:         formatAlnumUnicode,
 		FormatSlug:                 formatSlug,
+		FormatText:                 formatText,
 		FormatUsername:             formatUsername,
 		FormatStrictHtml:           formatStrictHtml,
 		FormatNumeric:              formatNumeric,
@@ -614,4 +616,9 @@ func formatUsername(value string) bool {
 // formatSlug is the validation function for validating if the current field's value does not contain html.
 func formatStrictHtml(value string) bool {
 	return !strictHtmlRegex.MatchString(value)
+}
+
+// formatText is the validation function for validating if the current field's value contains visible text.
+func formatText(value string) bool {
+	return !textRegex.MatchString(value)
 }

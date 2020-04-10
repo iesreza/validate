@@ -9,8 +9,9 @@ const (
 	alnumUnicodeRegexString = "^[\\p{L}\\p{N}]+$"
 
 	slugRegexString       = "^[0-9a-zA-Z\\-\\_]+$"
-	usernameRegexString   = "/^[a-z0-9_-]{3,32}$/"
+	usernameRegexString   = `^[a-z0-9_-]{3,32}$`
 	strictHtmlRegexString = "\\<\\/*[a-z]+.*\\/*\\>"
+	textRegexString       = "^[a-z0-9\\s]+$"
 
 	numericRegexString               = "^[0-9]+$"
 	numberRegexString                = "^[-+]?[0-9]+(?:\\.[0-9]+)?$"
@@ -56,6 +57,7 @@ var (
 	slugRegex       = regexp.MustCompile(slugRegexString)
 	usernameRegex   = regexp.MustCompile(usernameRegexString)
 	strictHtmlRegex = regexp.MustCompile(strictHtmlRegexString)
+	textRegex       = regexp.MustCompile(textRegexString)
 
 	numericRegex               = regexp.MustCompile(numericRegexString)
 	numberRegex                = regexp.MustCompile(numberRegexString)

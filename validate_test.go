@@ -2,10 +2,15 @@ package validate
 
 import (
 	"errors"
+	"fmt"
 	"reflect"
 	"testing"
 	"time"
 )
+
+func TestValidate(t *testing.T) {
+	fmt.Println(ValidateVariable("myfield", "empty=false", "salam"))
+}
 
 func TestSplitValidators(t *testing.T) {
 	key, val, validators := "", "", ""

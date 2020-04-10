@@ -35,6 +35,11 @@ func Validate(element interface{}) error {
 	return validateField(value, "", "")
 }
 
+func ValidateVariable(fieldName, validator string, value interface{}) error {
+	v := reflect.ValueOf(value)
+	return validateField(v, fieldName, validator)
+}
+
 // validateField validates a struct field
 func validateField(value reflect.Value, fieldName string, validators string) error {
 	kind := value.Kind()
