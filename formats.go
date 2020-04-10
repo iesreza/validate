@@ -620,5 +620,5 @@ func formatStrictHtml(value string) bool {
 
 // formatText is the validation function for validating if the current field's value contains visible text.
 func formatText(value string) bool {
-	return !textRegex.MatchString(value)
+	return textRegex.MatchString(value)
 }

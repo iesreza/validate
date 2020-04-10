@@ -1,6 +1,7 @@
 package validate
 
 import (
+	"fmt"
 	"reflect"
 	"regexp"
 	"strings"
@@ -31,12 +32,24 @@ type CustomValidator interface {
 //  // err contains an error
 func Validate(element interface{}) error {
 	value := reflect.ValueOf(element)
-
 	return validateField(value, "", "")
 }
 
 func ValidateVariable(fieldName, validator string, value interface{}) error {
 	v := reflect.ValueOf(value)
+	t := v.Type().String()
+	if t[0:2] == "[]" {
+		for _, item := range value.([]interface{}) {
+			err := ValidateVariable(fieldName, validator, item)
+			if err != nil {
+				return err
+			}
+		}
+		return nil
+	} else {
+		v = reflect.ValueOf(fmt.Sprint(v))
+	}
+
 	return validateField(v, fieldName, validator)
 }
 
