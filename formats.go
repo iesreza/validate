@@ -3,12 +3,12 @@ package validate
 import (
 	"bytes"
 	"crypto/sha256"
+	"github.com/araddon/dateparse"
+	urn "github.com/leodido/go-urn"
 	"net"
 	"net/url"
 	"os"
 	"strings"
-
-	urn "github.com/leodido/go-urn"
 )
 
 // FormatType is used for format validator type definitions.
@@ -17,6 +17,7 @@ type FormatType string
 // Following string formats are available.
 // E.g. `validate:"format=email"`
 const (
+	FormatDate                 FormatType = "date"
 	FormatAlpha                FormatType = "alpha"
 	FormatAlnum                FormatType = "alnum"
 	FormatAlphaUnicode         FormatType = "alpha_unicode"
@@ -76,6 +77,7 @@ type formatFunc func(value string) bool
 
 func getFormatTypeMap() map[FormatType]formatFunc {
 	return map[FormatType]formatFunc{
+		FormatDate:					formatDate,
 		FormatAlpha:                formatAlpha,
 		FormatAlnum:                formatAlnum,
 		FormatAlphaUnicode:         formatAlphaUnicode,
@@ -621,4 +623,10 @@ func formatStrictHtml(value string) bool {
 // formatText is the validation function for validating if the current field's value contains visible text.
 func formatText(value string) bool {
 	return textRegex.MatchString(value)
+}
+
+// formatDate is the validation function for validating if the current field's value contains date.
+func formatDate(value string) bool {
+	_, err := dateparse.ParseLocal(value)
+	return err == nil
 }

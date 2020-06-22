@@ -62,6 +62,9 @@ func validateField(value reflect.Value, fieldName string, validators string) err
 
 	// Get validators
 	keyValidators, valueValidators, validators, err := splitValidators(validators)
+	if valueValidators == "-"{
+		return nil
+	}
 	if err != nil {
 		err = setFieldName(err, fieldName)
 		return err
