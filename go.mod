@@ -1,3 +1,3 @@
 module github.com/iesreza/validate
 
-go 1.14
+go 1.13
